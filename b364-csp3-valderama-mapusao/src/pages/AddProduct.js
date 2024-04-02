@@ -22,7 +22,7 @@ export default function AddProduct() {
 		let token = localStorage.getItem('token');
 		console.log(token);
 
-		fetch('http://localhost:4000/products/',{
+		fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/',{
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",

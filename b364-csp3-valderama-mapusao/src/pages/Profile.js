@@ -12,7 +12,7 @@ export default function Profile() {
     const [details, setDetails] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:4000/users/details`, {
+        fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/details`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -41,7 +41,7 @@ export default function Profile() {
 
     // Function to handle profile update
     const handleUpdateProfile = (updatedDetails) => {
-        fetch(`http://localhost:4000/users/profile`, {
+        fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/profile`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function Profile() {
 
     return (
         (user.id === null) ?
-            <Navigate to="/products" /> :
+            <Navigate to="http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products" /> :
             <>
                 <Row>
                     <Col className="p-5 bg-primary text-white">

@@ -19,7 +19,7 @@ export default function Login() {
 
 	        // Prevents page redirection via form submission
 	        e.preventDefault();
-			fetch('http://localhost:4000/users/login',{
+			fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/login',{
 
 			method: 'POST',
 			headers: {
@@ -77,7 +77,7 @@ export default function Login() {
 	    }
 
 	const retrieveUserDetails = (token) => {
-		fetch('http://localhost:4000/users/details', {
+		fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/details', {
 			headers: {
 				Authorization: `Bearer ${ token }`
 			}

@@ -7,7 +7,7 @@ export default function FeaturedProducts(){
     const [previews, setPreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/products/`)
+        fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

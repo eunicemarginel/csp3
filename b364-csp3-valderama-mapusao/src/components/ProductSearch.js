@@ -10,7 +10,7 @@ const ProductSearch = () => {
 
     const handleNameSearch = async () => {
         try {
-            const response = await fetch('http://localhost:4000/products/search', {
+            const response = await fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/searchByName', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const ProductSearch = () => {
 
     const handlePriceSearch = async () => {
         try {
-            const response = await fetch('http://localhost:4000/products/searchByPrice', {
+            const response = await fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/searchByPrice', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

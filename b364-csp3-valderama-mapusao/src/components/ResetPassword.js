@@ -15,7 +15,7 @@ const ResetPassword = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/users/reset-password ', {
+      const response = await fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/reset-password ', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

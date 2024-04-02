@@ -13,7 +13,7 @@ export default function Courses() {
 	
    const fetchData = useCallback(() => {
 
-   	let fetchUrl = user.isAdmin === true? "http://localhost:4000/products/all" : "http://localhost:4000/products/"
+   	let fetchUrl = user.isAdmin === true? "http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/all" : "http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/"
 
    	fetch(fetchUrl, {
    		headers: {

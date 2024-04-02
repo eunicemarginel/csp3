@@ -16,7 +16,7 @@ export default function ProductView() {
 	const [price, setPrice] = useState(0);
 
 	const order = (productId) => {
-		fetch(`http://localhost:4000/users/order`, {
+		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default function ProductView() {
 	useEffect(() => {
 		console.log(productId);
 		
-		fetch(`${process.env.REACT_APP_API_URL}/products${productId}`)
+		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
 			console.log(data)

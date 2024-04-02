@@ -28,7 +28,7 @@ export default function Register() {
 		// Prevents page redirection via form submission
 		e.preventDefault();
 
-		fetch('http://localhost:4000/users/register', {
+		fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/register', {
 
 		method: 'POST',
 		headers: {
@@ -97,7 +97,7 @@ export default function Register() {
 
 	return (
 		(user.id !== null)?
-			<Navigate to="/products"/>
+			<Navigate to="http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/"/>
 		:
 		<Form onSubmit={(e) => registerUser(e)}>
 		<h1 className="my-5 text-center">Register</h1>

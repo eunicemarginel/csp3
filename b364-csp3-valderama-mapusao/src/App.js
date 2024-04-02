@@ -31,7 +31,7 @@ function App() {
 
   // Used to check if the user information is properly stored upon login and the localStorage information is cleared upon logout
   useEffect(() => {
-    fetch('http://localhost:4000/users/details', {
+    fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/details', {
       headers: {
         Authorization: `Bearer ${ localStorage.getItem('token')}`
       }
