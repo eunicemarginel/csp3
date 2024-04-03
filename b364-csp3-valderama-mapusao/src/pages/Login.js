@@ -35,13 +35,8 @@ export default function Login() {
 		.then(res => res.json())
 		.then(data => {
 
-			// If no user information is found, the "access" property will not be available and will return undefined
-			// Using the typeof operator will return a string of the data type of the variable/expression it preceeds which is why the value being compared is in a string data type.
 			if(typeof data.access !== "undefined"){
 
-				// Set the email of the authenticated user in the local storage
-				// Syntax
-				// localStorage.setItem('propertyName', value)
 				localStorage.setItem('token', data.access);
 
 				// function for retrieving details
@@ -86,7 +81,6 @@ export default function Login() {
 		.then(data => {
 			console.log(data);
 
-			// Changes the global "user" state to store the "id" and the "isAdmin" property of the user which will be used for validation across the whole application.
 			setUser({
 				id: data.user._id,
 				isAdmin: data.user.isAdmin
@@ -96,7 +90,6 @@ export default function Login() {
 
     useEffect(() => {
 
-        // Validation to enable submit button when all fields are populated and both passwords match
         if(email !== '' && password !== ''){
             setIsActive(true);
         }else{
@@ -124,7 +117,7 @@ export default function Login() {
 		            />
 		        </Form.Group>
 
-		        <Form.Group controlId="password">
+		        <Form.Group controlId="/products">
 		            <Form.Label>Password</Form.Label>
 		            <Form.Control 
 		                type="password" 

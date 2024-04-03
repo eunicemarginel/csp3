@@ -15,8 +15,8 @@ const ResetPassword = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users/reset-password ', {
-        method: 'PUT',
+      const response = await fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/users//reset-password/ ', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

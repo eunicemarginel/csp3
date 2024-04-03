@@ -2,34 +2,23 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ProductSearch from './ProductSearch';
 
+export default function UserView({ products }) {
+    const [renderedProducts, setRenderedProducts] = useState([]);
 
-export default function UserView({productsData}) {
+    useEffect(() => {
+        if (products && Array.isArray(products)) {
+            const activeProducts = products.filter(product => product.isActive);
+            const productCards = activeProducts.map(product => (
+                <ProductCard productProp={product} key={product._id} />
+            ));
+            setRenderedProducts(productCards);
+        }
+    }, [products]);
 
-	const [products, setProducts] = useState([])
-
-	useEffect(() => {
-		if (productsData) {
-			console.log(productsData);
-	
-			const productsArr = productsData.map(product => {
-				//only render the active products
-				if (product.isActive === true) {
-					return (
-						<ProductCard productProp={product} key={product._id}/>
-					);
-				} else {
-					return null;
-				}
-			});
-	
-			setProducts(productsArr);
-		}
-	}, [productsData]);
-
-	return(
-		<>
-			<ProductSearch/>
-			{ products }
-		</>
-		)
+    return (
+        <>
+            <ProductSearch />
+            {renderedProducts}
+        </>
+    );
 }

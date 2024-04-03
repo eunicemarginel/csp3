@@ -2,6 +2,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
 import { Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function Register() {
 
@@ -97,7 +98,7 @@ export default function Register() {
 
 	return (
 		(user.id !== null)?
-			<Navigate to="http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/"/>
+			<Navigate to="/products"/>
 		:
 		<Form onSubmit={(e) => registerUser(e)}>
 		<h1 className="my-5 text-center">Register</h1>

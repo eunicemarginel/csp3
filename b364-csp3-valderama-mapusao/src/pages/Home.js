@@ -8,7 +8,7 @@ export default function Home() {
 	const data = {
 		title: "Zuitt Coding Bootcamp",
 		content: "Opportunities for everyone, everywhere",
-		destination: "/courses",
+		destination: "/products",
 		label: "Enroll now!"
 	}
 
