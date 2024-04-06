@@ -16,7 +16,7 @@ export default function ProductView() {
 	const [price, setPrice] = useState(0);
 
 	const order = (productId) => {
-		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/details`, {
+		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/order`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
