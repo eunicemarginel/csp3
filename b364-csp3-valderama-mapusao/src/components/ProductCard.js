@@ -3,8 +3,9 @@ import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function ProductCard({productProp}) {
-    const {_id, name, description, price} = productProp;
+export default function ProductCard({ productProp }) {
+
+    const { _id, name, description, price } = productProp;
 
     return (
         <Card>
@@ -17,13 +18,5 @@ export default function ProductCard({productProp}) {
                 <Link className="btn btn-primary" to={`/products/${_id}`}>Details</Link>
             </Card.Body>
         </Card>
-    )
-}
-
-ProductCard.propTypes = {
-    product: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired
-    })
+    );
 }

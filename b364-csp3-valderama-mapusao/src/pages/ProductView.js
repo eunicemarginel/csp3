@@ -16,7 +16,7 @@ export default function ProductView() {
 	const [price, setPrice] = useState(0);
 
 	const order = (productId) => {
-		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}`, {
+		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/details`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,7 +45,7 @@ export default function ProductView() {
 					text: "You have successfully ordered this item."
 				})
 
-				navigate("/roducts");
+				navigate("/products");
 			} else {
 				Swal.fire({
 					title: "Something went wrong",
@@ -59,17 +59,29 @@ export default function ProductView() {
 
 	useEffect(() => {
 		console.log(productId);
-		
+	
 		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}`)
-		.then(res => res.json())
-		.then(data => {
-			console.log(data)
-
-			setName(data.product.name);
-			setDescription(data.product.description);
-			setPrice(data.product.price);
-		});
+			.then(res => res.json())
+			.then(data => {
+				console.log(data);
+	
+				// Check if the product data exists before accessing its properties
+				if (data && data.product) {
+					setName(data.product.name || "");
+					setDescription(data.product.description || "");
+					setPrice(data.product.price || 0);
+				} else {
+					console.error("Product data is undefined or null");
+				}
+			})
+			.catch(error => {
+				console.error('Error fetching product data:', error);
+				// Handle the error, such as showing an error message to the user
+			});
 	}, [productId]);
+	
+		
+	
 
 	return (
 		<Container className="mt-5">
@@ -82,8 +94,6 @@ export default function ProductView() {
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text>PhP {price}</Card.Text>
-							<Card.Subtitle>Class Schedule</Card.Subtitle>
-							<Card.Text>8 am - 5 pm</Card.Text>
 							{user.id !== null ?
 								<Button variant="primary" onClick={() => order(productId)}>Order</Button>
 								:

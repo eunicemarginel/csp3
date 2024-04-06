@@ -10,7 +10,6 @@ import React from 'react';
 export default function AppNavbar() {
 	// State to store the user information stored in the login page.
 	const { user } = useContext(UserContext);
-	console.log(user); 
 	// Checking if we received the login token
 
 	return (

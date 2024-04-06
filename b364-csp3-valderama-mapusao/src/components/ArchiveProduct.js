@@ -11,19 +11,20 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to archive product');
+        }
+        return res.json();
+      })
       .then(data => {
         console.log(data);
-        if (data.message === 'Product archived successfully') {
-          Swal.fire({
-            title: 'Success',
-            icon: 'success',
-            text: 'Product successfully disabled'
-          });
-          fetchData(); // Update product list after archiving
-        } else {
-          throw new Error('Something went wrong');
-        }
+        Swal.fire({
+          title: 'Success',
+          icon: 'success',
+          text: 'Product successfully archived'
+        });
+        fetchData(); // Update product list after archiving
       })
       .catch(error => {
         Swal.fire({
@@ -43,19 +44,20 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to activate product');
+        }
+        return res.json();
+      })
       .then(data => {
         console.log(data);
-        if (data.message === 'Product activated successfully') {
-          Swal.fire({
-            title: 'Success',
-            icon: 'success',
-            text: 'Product successfully enabled'
-          });
-          fetchData(); // Update product list after activation
-        } else {
-          throw new Error('Something went wrong');
-        }
+        Swal.fire({
+          title: 'Success',
+          icon: 'success',
+          text: 'Product successfully activated'
+        });
+        fetchData(); // Update product list after activation
       })
       .catch(error => {
         Swal.fire({
@@ -77,92 +79,3 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
     </>
   );
 }
-
-
-// import { Button } from 'react-bootstrap';
-// import Swal from 'sweetalert2';
-
-// export default function ArchiveProduct({product, isActive, fetchData}) {
-
-// 	const archiveToggle = (productId) => {
-// 		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}/archive`, {
-// 			method: 'PATCH',
-// 			headers: {
-// 				'Content-Type': 'application/json',
-// 				Authorization: `Bearer ${localStorage.getItem('token')}`
-// 			}
-// 		})
-
-// 		.then(res => res.json())
-// 		.then(data => {
-// 			console.log(data)
-// 			if(data.message === 'Product archived successfully') {
-// 				Swal.fire({
-// 					title: 'Success',
-// 					icon: 'success',
-// 					text: 'Product successfully disabled'
-// 				})
-// 				fetchData();
-
-// 			}else {
-// 				Swal.fire({
-// 					title: 'Something Went Wrong',
-// 					icon: 'Error',
-// 					text: 'Please Try again'
-// 				})
-// 				fetchData();
-// 			}
-
-
-// 		})
-// 	}
-
-
-// 	const activateToggle = (productId) => {
-// 		fetch(`http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/${productId}/activate`, {
-// 			method: 'PATCH',
-// 			headers: {
-// 				'Content-Type': 'application/json',
-// 				Authorization: `Bearer ${localStorage.getItem('token')}`
-// 			}
-// 		})
-
-// 		.then(res => res.json())
-// 		.then(data => {
-// 			console.log(data)
-// 			if(data.message === "Product activated successfully") {
-// 				Swal.fire({
-// 					title: 'Success',
-// 					icon: 'success',
-// 					text: 'Product successfully enabled'
-// 				})
-// 				fetchData();
-// 			}else {
-// 				Swal.fire({
-// 					title: 'Something Went Wrong',
-// 					icon: 'Error',
-// 					text: 'Please Try again'
-// 				})
-// 				fetchData();
-// 			}
-
-
-// 		})
-// 	}
-
-
-// 	return(
-// 		<>
-// 			{isActive ?
-
-// 				<Button variant="danger" size="sm" onClick={() => archiveToggle(product)}>Archive</Button>
-
-// 				:
-
-// 				<Button variant="success" size="sm" onClick={() => activateToggle(product)}>Activate</Button>
-
-// 			}
-// 		</>
-
-// 	)
-// }

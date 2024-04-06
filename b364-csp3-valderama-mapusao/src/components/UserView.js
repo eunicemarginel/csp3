@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import ProductSearch from './ProductSearch';
 
-export default function UserView({ products }) {
-    const [renderedProducts, setRenderedProducts] = useState([]);
+export default function UserView() {
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        if (products && Array.isArray(products)) {
-            const activeProducts = products.filter(product => product.isActive);
-            const productCards = activeProducts.map(product => (
-                <ProductCard productProp={product} key={product._id} />
-            ));
-            setRenderedProducts(productCards);
-        }
-    }, [products]);
+        fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/')
+            .then(response => response.json())
+            .then(data => {
+                // Filter out only the active products
+                const activeProducts = data.filter(product => product.isActive);
+                // Update the products state with active products
+                setProducts(activeProducts);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    }, []);
 
     return (
         <>
             <ProductSearch />
-            {renderedProducts}
+            {products.map(product => (
+                <ProductCard productProp={product} key={product._id} />
+            ))}
         </>
     );
 }
