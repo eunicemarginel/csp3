@@ -5,6 +5,12 @@ import ProductSearch from './ProductSearch';
 export default function UserView() {
     const [products, setProducts] = useState([]);
 
+    // Define the addToCart function
+    const addToCart = (product) => {
+        // Add to cart logic
+        console.log('Added to cart:', product);
+    };
+
     useEffect(() => {
         fetch('http://ec2-18-217-154-136.us-east-2.compute.amazonaws.com/b2/products/')
             .then(response => response.json())
@@ -23,7 +29,7 @@ export default function UserView() {
         <>
             <ProductSearch />
             {products.map(product => (
-                <ProductCard productProp={product} key={product._id} />
+                <ProductCard key={product._id} productProp={product} addToCart={addToCart} />
             ))}
         </>
     );

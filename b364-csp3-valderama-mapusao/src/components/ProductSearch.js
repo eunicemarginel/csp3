@@ -106,7 +106,7 @@ const ProductSearch = () => {
             <h3>Search Results:</h3>
             <div className="list-group">
                 {searchResults.map(product => (
-                    <ProductCard productProp={product} key={product._id}/>
+                    <ProductCard key={product._id} productProp={product}/>
                 ))}
             </div>
         </div>
